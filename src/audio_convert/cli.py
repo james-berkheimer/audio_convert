@@ -20,7 +20,6 @@ def main(filetype, inpath):
     for file_obj in file_objs:
         paths.append([filetype, file_obj.path])
 
-    print(paths)
     with Pool(6) as pool:
         pool.map(do_work, paths)
 
