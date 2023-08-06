@@ -1,4 +1,4 @@
-from _NEWPROJECT_.cli import main
+from audio_convert.cli import main
 
 if __name__ == "__main__":
     main()

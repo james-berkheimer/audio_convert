@@ -5,11 +5,13 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "<NEWPROJECTNAME>"
-description = "New project template"
+name = "audio_convert"
+description = "Convert audio files"
 version = '0.0.1'
 requires-python = ">=3.9.12"
-dependencies = []
+dependencies = [
+    "click"
+]
 
 [project.scripts]
-<CMD> = "<NEWPROJECT>.__main__:main"
+ac = "audio_convert.__main__:main"
