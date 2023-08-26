@@ -1,4 +1,5 @@
 from multiprocessing import Pool
+from pathlib import Path
 
 import click
 
@@ -13,15 +14,16 @@ def do_work(file_data):
 
 @click.command()
 @click.option("-f", "--filetype", default="mp3")
-@click.argument("inpath", default=WORKING_DIR)
+@click.argument("inpath", default=WORKING_DIR, type=click.Path(resolve_path=True))
 def main(filetype, inpath):
-    file_objs = utils.dir_scan(inpath, True)
     paths = []
-    for file_obj in file_objs:
-        paths.append([filetype, file_obj.path])
+    for dir_obj in utils.dir_scan(inpath):
+        for file_obj in utils.dir_scan(dir_obj, True):
+            if file_obj.suffix not in [".jpg", ".png"]:
+                paths.append([filetype, file_obj])
 
-    with Pool(6) as pool:
-        pool.map(do_work, paths)
+    # with Pool(6) as pool:
+    #     pool.map(do_work, paths)
 
 
 if __name__ == "__main__":

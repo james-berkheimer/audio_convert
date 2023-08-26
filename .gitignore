@@ -78,6 +78,15 @@ target/
 # Jupyter Notebook
 .ipynb_checkpoints
 
+# Python
+*.pyc
+
+#Vim
+*.swp
+
+# OSX
+.DS_Store
+
 # IPython
 profile_default/
 ipython_config.py
@@ -161,3 +170,11 @@ cython_debug/
 
 # Custom
 files/
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
+# VS Code
+*.code-workspace
+.vscode/

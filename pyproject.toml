@@ -14,4 +14,4 @@ dependencies = [
 ]
 
 [project.scripts]
-ac = "audio_convert.__main__:main"
+ac = "audio_convert.cli:main"

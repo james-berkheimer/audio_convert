@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 
 def dir_scan(scan_path: str, getfiles=False):
@@ -11,6 +12,6 @@ def dir_scan(scan_path: str, getfiles=False):
                 scan_output.append(root_scan_entry)
         else:
             if root_scan_entry.is_file():
-                scan_output.append(root_scan_entry)
+                scan_output.append(Path(root_scan_entry))
     scan_obj.close()
     return scan_output
