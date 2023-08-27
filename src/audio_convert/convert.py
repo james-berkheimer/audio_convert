@@ -4,8 +4,8 @@ from pathlib import Path
 
 
 class Converter(object):
-    def __init__(self, type_out, file_path_in):
-        self._type_out = f".{type_out}"
+    def __init__(self, file_ext_out, file_path_in):
+        self._file_ext_out = f".{file_ext_out}"
         self._file_path_in = Path(file_path_in)
         self._file_path_out = self._make_out_path()
 
@@ -28,7 +28,15 @@ class Converter(object):
 
     def _make_out_path(self):
         raw_filename = self._file_path_in.stem
+        raw_filename = (
+            raw_filename.replace("  ", "_")
+            .replace(" ", "_")
+            .replace(".", "")
+            .replace(",", "")
+            .replace("'", "")
+        )
         dirpath = self._file_path_in.parent
-        new_dirpath = dirpath.joinpath("_converted")
+        new_dirpath = dirpath.parent.joinpath("_converted", dirpath.stem)
+        print(new_dirpath)
         new_dirpath.mkdir(exist_ok=True)
-        return new_dirpath.joinpath(raw_filename).with_suffix(self._type_out)
+        return new_dirpath.joinpath(raw_filename).with_suffix(self._file_ext_out)

@@ -22,8 +22,8 @@ def main(filetype, inpath):
             if file_obj.suffix not in [".jpg", ".png"]:
                 paths.append([filetype, file_obj])
 
-    # with Pool(6) as pool:
-    #     pool.map(do_work, paths)
+    with Pool(6) as pool:
+        pool.map(do_work, paths)
 
 
 if __name__ == "__main__":
