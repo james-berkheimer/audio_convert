@@ -1,9 +1,8 @@
 from multiprocessing import Pool
-from pathlib import Path
 
 import click
 
-from . import FILES_DIR, WORKING_DIR, utils
+from . import WORKING_DIR, utils
 from .convert import Converter
 
 

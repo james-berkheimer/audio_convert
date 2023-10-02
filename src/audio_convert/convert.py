@@ -1,4 +1,3 @@
-import os
 import subprocess
 from pathlib import Path
 
@@ -23,8 +22,9 @@ class Converter(object):
                     self._file_path_out,
                 ]
             )
-        except Exception as e:
-            print(e)
+        # except Exception as e:
+        except subprocess.CalledProcessError as e:
+            print(e.output)
 
     def _make_out_path(self):
         raw_filename = self._file_path_in.stem
@@ -34,9 +34,9 @@ class Converter(object):
             .replace(".", "")
             .replace(",", "")
             .replace("'", "")
+            .lower()
         )
         dirpath = self._file_path_in.parent
         new_dirpath = dirpath.parent.joinpath("_converted", dirpath.stem)
-        print(new_dirpath)
-        new_dirpath.mkdir(exist_ok=True)
+        new_dirpath.mkdir(parents=True, exist_ok=True)
         return new_dirpath.joinpath(raw_filename).with_suffix(self._file_ext_out)

@@ -8,6 +8,14 @@ build-backend = "setuptools.build_meta"
 name = "audio_convert"
 description = "Convert audio files"
 version = '0.0.1'
+authors = [
+  { name="James Berkheimer", email="james.berkheimer@gmail.com" },
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 requires-python = ">=3.9.12"
 dependencies = [
     "click"
@@ -15,3 +23,46 @@ dependencies = [
 
 [project.scripts]
 ac = "audio_convert.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "covdefaults",
+    "coverage",
+    "flake8",
+    "flake8-bugbear",
+    "Flake8-pyproject",
+    "isort",
+    "pep8-naming",
+    "pytest",
+    "tox",
+    "build"
+]
+
+[tool.black]
+skip-string-normalization = false
+
+[tool.flake8]
+select = ["B", "C", "E", "F", "N", "W", "B9"]
+extend-ignore = [
+    "E203",
+    "E501",
+    "E722",
+    "W503",
+]
+max-line-length = "88"
+exclude = [
+    "*.egg-info",
+    "*.pyc",
+    ".cache",
+    ".eggs",
+    ".git",
+    ".tox",
+    "__pycache__",
+    "build",
+    "dist",
+    ".venv"
+]
+
+[tool.isort]
+profile = "black"
